@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticketing - Page de connexion{% endblock %}
+
+{% block content %}
+    <div style="text-align: center;">
+        <h1>Connectez-vous à ticketing ! </h1>
+        {{form_start(form)}}
+        {{form_row(form.email, {
+            'label': 'Votre Email',
+            'name': '_username'
+        })}}
+        {{form_row(form.password, {
+            'label': 'Mot de passe',
+            'name': '_password'
+        })}}
+        {{ form_widget(form.submit, {
+            'label': 'Se connecter'
+        })}}
+        <a href="{{ path('app_password_retrieve') }}">Mot de passe oublié ?</a>
+        {{form_end(form)}}
+    </div>
+{% endblock %}

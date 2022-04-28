@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticketing - Créer un ticket{% endblock %}
+
+{% block content %}
+    <h1> Détails du ticket </h1>
+    <h3>Résumé du ticket</h3>
+    Auteur: {{ticket.user.email}} | {{ticket.titre}} | {{ticket.description}} | crée le {{ticket.DateCreation|date("m/d/Y-H:i:s")}} | Priorité : {{ticket.priorite.priorite}} |
+
+    Etat : {% if ticket.etat.state == "TERMINE"%} Terminé  {% else%} <form>
+                <select name="etat">
+                    {% for etat in etats %}
+                            {% if etat.state == ticket.etat.state %}<option selected="selected" value="{{etat.state}}">{{etat.state}}</option>{% else %} <option value="{{etat.state}}">{{etat.state}}</option> {% endif %}
+                    {% endfor %}
+                </select>
+                <button type="submit">Mettre à jour</button>
+            </form>
+            {% endif %}
+    <h3>Suivi</h3>
+    {% for message in ticket.messages %}
+        {{message.expediteur.email}} {{message.dateEnvoie|date("m/d/Y-H:i:s")}} | {{ message.message }} <br />
+    {% endfor %}
+    <h3> Envoyer un message</h3>
+    {{form(form)}}
+
+{% endblock %}

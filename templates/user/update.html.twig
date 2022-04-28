@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}modification d'un utilisateur{% endblock %}
+
+{% block content %}
+    <h1>Ajouter un role à un User</h1>
+    <h4>Rôle(s) actuel(s)</h4>
+    {% for role in roles %}
+        {{role}}<br />
+    {% endfor %}
+    <h4>Ajouter le rôle</h4>
+
+    <select name="role" form="update_user">
+        <option value="ROLE_ADMIN">ADMIN</option>
+        <option value="ROLE_TECHNICIEN">Technicien</option>
+        <option value="ROLE_COMPTABLE">Comptable</option>
+        <option value="ROLE_DEVELOPPER">Développeur</option>
+        <option value="ROLE_VACANCES_ENFANT">Vacances enfant</option>
+        <option value="ROLE_VACANCES_LOISIRS">Vacances loisirs</option>
+        <option value="ROLE_TRANSPORT">Transport</option>
+    </select>
+    <form action="" method="get" id="update_user">
+
+        <button type="submit">ajouter</button>
+    </form>
+    {% if error is defined %}
+        {{ error }}
+    {% endif %}
+
+{% endblock %}

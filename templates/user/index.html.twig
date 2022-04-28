@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les utilisateurs{% endblock %}
+
+{% block content %}
+    <div>
+        {% for user in users %}
+            {{user.email}}
+            <textarea>
+                {% for role in user.roles%}
+                    {{role}}
+                {% endfor %}
+            </textarea>
+            <a href="/admin/user/update/{{user.id}}">Ajouter un rôle</a> |
+            <a href="/admin/user/deleteRole/{{user.id}}">supprimer un rôle</a>
+
+
+            <br />
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

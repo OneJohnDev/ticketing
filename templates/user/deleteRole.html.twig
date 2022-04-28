@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ticketing - Supprimer un rôle{% endblock %}
+
+{% block content %}
+    <h1>Supprimer un role à un User</h1>
+    <h4>Rôle(s) actuel(s)</h4>
+    {% for role in roles %}
+        {{role}} |  <a href="?role={{role}}">Supprimer le rôle</a><br />
+    {% endfor %}
+
+
+    {% if error is defined %}
+        {{ message }}
+    {% endif %}
+
+{% endblock %}

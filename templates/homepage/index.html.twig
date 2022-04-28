@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomepageController!{% endblock %}
+
+{% block body %}
+    <h1>Bienvenue {{user.email}}</h1>
+    <a href="{{ path('app_ticket') }}">Créer un ticket</a>
+    <h2>Ticket(s) non attribué(s)</h2>
+    {% for nonAttribue in nonAttribues %}
+        {% if is_granted('ROLE_ADMIN') %} {{ nonAttribue.user.email }} | {% endif %}{{ nonAttribue.titre}} | {{ nonAttribue.description }} | {{ nonAttribue.DateCreation|date("m/d/Y-H:i:s")}} | {{ nonAttribue.priorite.priorite }} <a href="/ticket/{{nonAttribue.id}}">voir</a> <br />
+    {% endfor %}
+
+    <h2>Ticket(s) attribué(s)</h2>
+    {% for attribue in attribues %}
+        {% if is_granted('ROLE_ADMIN') %} {{ attribue.user.email }} | {% endif %}{{ attribue.titre}} | {{ attribue.description }} | {{ attribue.DateCreation|date("m/d/Y-H:i:s")}} | {{ attribue.priorite.priorite }} <a href="/ticket/{{attribue.id}}">voir</a> <br />
+    {% endfor %}
+    <h2>Ticket(s) en cours(s)</h2>
+    {% for ticketEnCours in enCours %}
+        {% if is_granted('ROLE_ADMIN') %} {{ ticketEnCours.user.email }} | {% endif %}{{ ticketEnCours.titre}} | {{ ticketEnCours.description }} | {{ ticketEnCours.DateCreation|date("m/d/Y-H:i:s")}} | {{ ticketEnCours.priorite.priorite }} <a href="/ticket/{{ticketEnCours.id}}">voir</a> <br />
+    {% endfor %}
+    <h2>Ticket(s) en attente(s)</h2>
+    {% for ticketEnAttente in enAttente %}
+        {% if is_granted('ROLE_ADMIN') %} {{ ticketEnAttente.user.email }} | {% endif %}{{ ticketEnAttente.titre}} | {{ ticketEnAttente.description }} | {{ ticketEnAttente.DateCreation|date("m/d/Y-H:i:s")}} | {{ ticketEnAttente.priorite.priorite }} <a href="/ticket/{{ticketEnAttente.id}}">voir</a> <br />
+    {% endfor %}
+    <h2>Ticket(s) terminées(s)</h2>
+    {% for ticketTermine in termines %}
+        {% if is_granted('ROLE_ADMIN') %} {{ ticketTermine.user.email }} | {% endif %}{{ ticketTermine.titre}} | {{ ticketTermine.description }} | {{ ticketTermine.DateCreation|date("m/d/Y-H:i:s")}} | {{ ticketTermine.priorite.priorite }} <a href="/ticket/{{ticketTermine.id}}">voir</a> <br />
+    {% endfor %}
+
+    <p>En cas d'urgence : JOHNNY ONEPHANDARA - 0698564523</p>
+
+
+
+
+{% endblock %}
